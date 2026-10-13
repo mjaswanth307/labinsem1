@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Signup</title>
+<style>
+body{text-align:center;font-family:Arial}
+input,button{padding:10px;margin:5px}
+</style>
+</head>
+<body>
+
+<h2>Signup</h2>
+<input id="u" placeholder="Username"><br>
+<input id="e" placeholder="Email"><br>
+<input id="p" type="password" placeholder="Password"><br>
+<button onclick="signup()">Signup</button>
+
+<h2>Login</h2>
+<input id="le" placeholder="Email"><br>
+<input id="lp" type="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+<p id="msg"></p>
+
+<script>
+function signup(){
+ let user={
+  name:u.value,
+  email:e.value,
+  pass:p.value
+ };
+ localStorage.setItem("user",JSON.stringify(user));
+ alert("Signup Successful");
+}
+
+function login(){
+ let user=JSON.parse(localStorage.getItem("user"));
+ if(user && user.email==le.value &&
+ user.pass==lp.value)
+ msg.innerHTML="Login Successful! Welcome "+user.name;
+ else msg.innerHTML="Invalid Login";
+}
+</script>
+</body>
+</html>
